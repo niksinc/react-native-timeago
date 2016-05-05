@@ -5,11 +5,26 @@ var {
 } = React;
 var moment = require('moment');
 var TimerMixin = require('react-timer-mixin');
-
+var defaultRelativeTime = {
+    'future' : 'in %s',
+    'past'   : '%s ago',
+    'few seconds':'1s',
+    'minute':'1min',
+    'minutes':'mins',
+    'hour':'1h',
+    'hours':'hs',
+    'day':'1d',
+    'days':'ds',
+    'month':'1mon',
+    'months':'mons',
+    'year':'yr',
+    'years':'yrs'
+};
 var TimeAgo = React.createClass({
   mixins: [TimerMixin],
   propTypes: {
-    time: PropTypes.string.isRequired,
+    time: PropTypes.string,
+    unixTimeStamp: PropTypes.number,
     interval: PropTypes.number,
     hideAgo: PropTypes.bool
   },
@@ -36,10 +51,26 @@ var TimeAgo = React.createClass({
     this.forceUpdate();
   },
 
+
+
+  getShortTimeString(longAgoString){
+     var compare =longAgoString.substr(longAgoString.indexOf(' ')).trim();
+     var digit =longAgoString.split(' ');
+     return defaultRelativeTime[compare] ? digit[0]+" "+defaultRelativeTime[compare] : longAgoString;
+},
+
   render() {
+    if(this.props.unixTimeStamp){
     return (
+      <Text {...this.props}>{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.props.hideAgo))}</Text>
+    );
+    }
+    else if(this.props.time){
+      return (
       <Text {...this.props}>{moment(this.props.time).fromNow(this.props.hideAgo)}</Text>
     );
+    }
+
   }
 });
 
