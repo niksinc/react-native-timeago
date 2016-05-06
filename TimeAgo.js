@@ -56,7 +56,7 @@ var TimeAgo = React.createClass({
   getShortTimeString(longAgoString){
      var compare =longAgoString.substr(longAgoString.indexOf(' ')).trim();
      var digit =longAgoString.split(' ');
-     digit= (!isNaN(parseInt(digit))) ? digit[0]: digit=''
+     digit= (!isNaN(parseInt(digit[0]))) ? digit[0]: digit=''
 
      return defaultRelativeTime[compare] ? digit+" "+defaultRelativeTime[compare] : longAgoString;
 },
