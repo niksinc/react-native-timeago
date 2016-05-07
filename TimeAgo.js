@@ -8,7 +8,7 @@ var TimerMixin = require('react-timer-mixin');
 var defaultRelativeTime = {
     'future' : 'in %s',
     'past'   : '%s ago',
-    'few seconds':'1s',
+    'few seconds':'now',
     'minute':'1min',
     'minutes':'mins',
     'hour':'1h',
@@ -51,8 +51,6 @@ var TimeAgo = React.createClass({
     this.forceUpdate();
   },
 
-
-
   getShortTimeString(longAgoString){
      var compare =longAgoString.substr(longAgoString.indexOf(' ')).trim();
      var digit =longAgoString.split(' ');
@@ -72,6 +70,12 @@ var TimeAgo = React.createClass({
       <Text {...this.props}>{moment(this.props.time).fromNow(this.props.hideAgo)}</Text>
     );
     }
+    else{
+      return (
+      <Text {...this.props}>nothig is there</Text>
+    );
+    }
+
 
   }
 });
