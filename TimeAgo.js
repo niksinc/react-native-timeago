@@ -12,13 +12,13 @@ var defaultRelativeTime = {
     'minute':'1min',
     'minutes':'mins',
     'hour':'1h',
-    'hours':'hs',
+    'hours':'h',
     'day':'1d',
-    'days':'ds',
+    'days':'d',
     'month':'1mon',
     'months':'mons',
-    'year':'yr',
-    'years':'yrs'
+    'year':'y',
+    'years':'y'
 };
 var TimeAgo = React.createClass({
   mixins: [TimerMixin],
