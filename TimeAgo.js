@@ -9,16 +9,16 @@ var defaultRelativeTime = {
     'future' : 'in %s',
     'past'   : '%s ago',
     'few seconds':'now',
-    'minute':'1min',
-    'minutes':'mins',
-    'hour':'1h',
-    'hours':'h',
-    'day':'1d',
-    'days':'d',
-    'month':'1mon',
-    'months':'mons',
-    'year':'y',
-    'years':'y'
+    'minute':'1 min',
+    'minutes':' mins',
+    'hour':'1 h',
+    'hours':' h',
+    'day':'1 day',
+    'days':' days',
+    'month':'1 mon',
+    'months':' mons',
+    'year':' y',
+    'years':' y'
 };
 var TimeAgo = React.createClass({
   mixins: [TimerMixin],
