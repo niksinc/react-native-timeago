@@ -1,8 +1,8 @@
-var React = require('react-native');
-var {
-  PropTypes,
+import React, {PropTypes} from 'react';
+import {
+
   Text
-} = React;
+} from 'react-native';
 var moment = require('moment');
 var TimerMixin = require('react-timer-mixin');
 var defaultRelativeTime = {
