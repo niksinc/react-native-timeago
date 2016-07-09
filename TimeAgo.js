@@ -17,13 +17,16 @@ var defaultRelativeTime = {
     'years':' y'
 };
 class  TimeAgo extends React.Component {
-  mixins: [TimerMixin],
-  propTypes: {
-    time: PropTypes.string,
-    unixTimeStamp: PropTypes.number,
-    interval: PropTypes.number,
-    hideAgo: PropTypes.bool
-  },
+
+  mixins: [TimerMixin];
+
+  // propTypes: {
+  //   time: PropTypes.string,
+  //   unixTimeStamp: PropTypes.number,
+  //   interval: PropTypes.number,
+  //   hideAgo: PropTypes.bool
+  // }
+
 constructor(){
   super();
   this.state ={
