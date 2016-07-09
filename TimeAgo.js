@@ -1,5 +1,4 @@
-import React, {PropTypes} from 'react';
-
+var  React=  require('react');
 var moment = require('moment');
 var TimerMixin = require('react-timer-mixin');
 var defaultRelativeTime = {
