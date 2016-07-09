@@ -1,8 +1,4 @@
 import React, {PropTypes} from 'react';
-import {
-
-  Text
-} from 'react-native';
 var moment = require('moment');
 var TimerMixin = require('react-timer-mixin');
 var defaultRelativeTime = {
@@ -62,17 +58,18 @@ var TimeAgo = React.createClass({
   render() {
     if(this.props.unixTimeStamp){
     return (
-      <Text {...this.props}>{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.props.hideAgo))}</Text>
+      <span {...this.props} >{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.props.hideAgo))}</span>
+      
     );
     }
     else if(this.props.time){
       return (
-      <Text {...this.props}>{moment(this.props.time).fromNow(this.props.hideAgo)}</Text>
+      <span {...this.props} >{moment(this.props.time).fromNow(this.props.hideAgo)}</span>
     );
     }
     else{
       return (
-      <Text {...this.props}>nothig is there</Text>
+      <span {...this.props} >nothig is there</span>
     );
     }
 
