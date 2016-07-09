@@ -14,8 +14,8 @@
   ],
   "peerDependencies": {
     "moment": "2.x.x",
-    "react-timer-mixin": "*"
-    "react": "^15.0.1",
+    "react-timer-mixin": "*",
+    "react": "^15.0.1"
   },
   "author": "Tyler Hughes <iampbt@gmail.com>",
   "repository": {
