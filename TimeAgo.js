@@ -16,7 +16,7 @@ var defaultRelativeTime = {
     'year':' y',
     'years':' y'
 };
-var TimeAgo = React.createClass({
+class  TimeAgo extends React.Component {
   mixins: [TimerMixin],
   propTypes: {
     time: PropTypes.string,
@@ -24,28 +24,31 @@ var TimeAgo = React.createClass({
     interval: PropTypes.number,
     hideAgo: PropTypes.bool
   },
+constructor(){
+  super();
+  this.state ={
 
-  getDefaultProps() {
-    return {
       hideAgo: false,
       interval: 60000
     }
-  },
+}
+
+
 
   componentDidMount() {
-    var {interval} = this.props;
+    var {interval} = this.state;
     this.setInterval(this.update, interval);
-  },
+  }
 
   componentWillUnmount() {
     this.clearInterval(this.update);
-  },
+  }
 
   // We're using this method because of a weird bug
   // where autobinding doesn't seem to work w/ straight this.forceUpdate
   update() {
     this.forceUpdate();
-  },
+  }
 
   getShortTimeString(longAgoString){
      var compare =longAgoString.substr(longAgoString.indexOf(' ')).trim();
@@ -53,18 +56,18 @@ var TimeAgo = React.createClass({
      digit= (!isNaN(parseInt(digit[0]))) ? digit[0]: digit=''
 
      return defaultRelativeTime[compare] ? digit+" "+defaultRelativeTime[compare] : longAgoString;
-},
+}
 
   render() {
     if(this.props.unixTimeStamp){
     return (
-      <span {...this.props} >{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.props.hideAgo))}</span>
-      
+      <span {...this.props} >{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.state.hideAgo))}</span>
+
     );
     }
     else if(this.props.time){
       return (
-      <span {...this.props} >{moment(this.props.time).fromNow(this.props.hideAgo)}</span>
+      <span {...this.props} >{moment(this.props.time).fromNow(this.state.hideAgo)}</span>
     );
     }
     else{
@@ -72,9 +75,7 @@ var TimeAgo = React.createClass({
       <span {...this.props} >nothig is there</span>
     );
     }
-
-
   }
-});
+}
 
 module.exports = TimeAgo;
