@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native",
+    
     "timeago",
     "react-component",
     "react-native-component"
@@ -15,7 +15,7 @@
   "peerDependencies": {
     "moment": "2.x.x",
     "react-timer-mixin": "*",
-    "react-native": "*"
+    
   },
   "author": "Tyler Hughes <iampbt@gmail.com>",
   "repository": {
