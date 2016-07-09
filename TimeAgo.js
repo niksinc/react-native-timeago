@@ -1,4 +1,8 @@
 import React, {PropTypes} from 'react';
+import {
+
+  Text
+} from 'react-native';
 var moment = require('moment');
 var TimerMixin = require('react-timer-mixin');
 var defaultRelativeTime = {
@@ -16,42 +20,36 @@ var defaultRelativeTime = {
     'year':' y',
     'years':' y'
 };
-class  TimeAgo extends React.Component {
+var TimeAgo = React.createClass({
+  mixins: [TimerMixin],
+  propTypes: {
+    time: PropTypes.string,
+    unixTimeStamp: PropTypes.number,
+    interval: PropTypes.number,
+    hideAgo: PropTypes.bool
+  },
 
-  mixins: [TimerMixin];
-
-  // propTypes: {
-  //   time: PropTypes.string,
-  //   unixTimeStamp: PropTypes.number,
-  //   interval: PropTypes.number,
-  //   hideAgo: PropTypes.bool
-  // }
-
-constructor(){
-  super();
-  this.state ={
-
+  getDefaultProps() {
+    return {
       hideAgo: false,
       interval: 60000
     }
-}
-
-
+  },
 
   componentDidMount() {
-    var {interval} = this.state;
+    var {interval} = this.props;
     this.setInterval(this.update, interval);
-  }
+  },
 
   componentWillUnmount() {
     this.clearInterval(this.update);
-  }
+  },
 
   // We're using this method because of a weird bug
   // where autobinding doesn't seem to work w/ straight this.forceUpdate
   update() {
     this.forceUpdate();
-  }
+  },
 
   getShortTimeString(longAgoString){
      var compare =longAgoString.substr(longAgoString.indexOf(' ')).trim();
@@ -59,26 +57,27 @@ constructor(){
      digit= (!isNaN(parseInt(digit[0]))) ? digit[0]: digit=''
 
      return defaultRelativeTime[compare] ? digit+" "+defaultRelativeTime[compare] : longAgoString;
-}
+},
 
   render() {
     if(this.props.unixTimeStamp){
     return (
-      <span {...this.props} >{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.state.hideAgo))}</span>
-
+      <span {...this.props}>{this.getShortTimeString(moment.unix(this.props.unixTimeStamp).fromNow(this.props.hideAgo))}</span>
     );
     }
     else if(this.props.time){
       return (
-      <span {...this.props} >{moment(this.props.time).fromNow(this.state.hideAgo)}</span>
+      <span {...this.props}>{moment(this.props.time).fromNow(this.props.hideAgo)}</span>
     );
     }
     else{
       return (
-      <span {...this.props} >nothig is there</span>
+      <span {...this.props}>nothig is there</span>
     );
     }
+
+
   }
-}
+});
 
 module.exports = TimeAgo;
